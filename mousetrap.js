@@ -747,6 +747,7 @@
 
             self.handleKey(character, _eventModifiers(e), e);
         }
+        self._handleKeyEvent = _handleKeyEvent;
 
         /**
          * called to set a 1 second timeout on the specified sequence
@@ -1076,6 +1077,15 @@
         var self = this;
         return self._handleKey.apply(self, arguments);
     };
+
+    /**
+     * exposes _handleKeyEvent publicly so it can be overwritten by extensions
+     */
+    Mousetrap.prototype.handleKeyEvent = function() {
+        var self = this;
+        return self._handleKeyEvent.apply(self, arguments);
+    };
+
 
     /**
      * Init the global mousetrap functions
